@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kdam+Thmor+Pro&family=Shadows+Into+Light&family=Share+Tech&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kdam+Thmor+Pro&family=Share+Tech&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kdam+Thmor+Pro&family=Londrina+Shadow&display=swap" rel="stylesheet">
+<style>
+	input {
+		font-size: 22px;
+	}
+body {
+  font-family: helvetica, sans-serif;
+  margin: 0 auto;
+  max-width: 600px;
+  background: #ff9248;
+}
+div {
+  height: 300px;
+  background-size: cover;
+  position: relative;
+  margin: 40px 0 0 0;
+  border-radius: 12px;
+}
+h1 {
+  font-family: 'Share Tech', sans-serif;
+  text-align: center;
+  font-size: 80px;
+  color: #8B0000;
+  margin: 60px 0 0 0;
+  font-style: italic;
+}
+h2 {
+  text-align: center;
+  color: #964B00;
+  margin: 0px 0 70px 0;
+  font-family: 'Kdam Thmor Pro', sans-serif;
+  font-size: 30px;
+}
+p {
+  color: rgba(255,180,1,1);
+  background: black;
+  background: linear-gradient(bottom, rgba(255,0,0,1), rgba(233,0,0,.4));
+  background: -webkit-linear-gradient(bottom, rgba(255,0,1), rgba(233,0,0,.4));
+  background: -moz-linear-gradient(bottom, rgba(255,0,0,1), rgba(233,0,0,.4));
+  padding: 10px;
+  line-height: 28px;
+  text-align: justify;
+  position: absolute;
+  bottom: 0;
+  margin: 0;
+  height: 30px;
+  transition: height .5s;
+  -webkit-transition: height .5s;
+  -moz-transition: height .5s;
+  font-family: 'Kdam Thmor Pro', sans-serif;
+  font-family: 'Shadows Into Light', cursive;
+  font-size: 25px;
+  font-weight: bold;
+}
+
+small {
+  opacity: 0;
+}
+
+.show-description p {
+  height: 150px;
+}
+
+.show-description small {
+  opacity: 1;
+}
+
+.first{
+  background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQb_DPEGA5Z7cqk8smJRSHctXLXMfGH-15lIw&usqp=CAU");
+}
+.second{
+  background-image: url("https://irepo.primecp.com/2015/06/224965/Ramen-Noodles-Pizza-Bake_ExtraLarge1000_ID-1049247.jpg?v=1049247");
+}
+.dessert{
+  background-image: url("https://assets.bonappetit.com/photos/63ee93e1d690ce0a8efeb44c/3:2/w_4683,h_3122,c_limit/021623-kimchi-miso-ramen-lede.jpg");
+}
+.price {
+  float: right;
+}
+@media (max-width: 500px) {
+  h1 {
+    font-size: 50px;
+    margin-top: 20px;
+    line-height: 40px;
+  }
+  h2 {
+    font-size: 20px;
+    margin: 20px 0 30px 0;
+  }
+  div {
+    margin: 20px 12px 0 12px;
+  }
+  p {
+    font-size: 20px;
+    line-height: 24px;
+  }
+  small {
+    font-size: 16px;
+  }
+}
+
+</style>
+
+</head>
+
+<body>
+<h1>Ren's Ramerzzeria</h1>
+<h2>Pizza! Ramen! Fuuuusiooonn!</h2>
+<div class="first">
+	<input type="number" min="0" style="width: 50px" class="quantities">
+  <p>Good Ol' Pizza! <span class="price">$2 per slice</span><br />
+  <small>Your typical type of pizza! From many toppings such as pepperoni, black olives, mushrooms and more to choose from, enjoy some delicious pizza! </small></p>
+</div>
+
+<div class="second">
+	<input type="number" min="0" style="width: 50px" class="quantities">
+  <p>Introducing Ramen Pizza! <span class="price">$5 per slice</span><br />
+  <small> Our take on the fusion of two of the most popular food here in NYC! Try out this amazing dish, now serving.</small></p>
+</div>
+<div class="dessert">
+	<input type="number" min="0" style="width: 50px" class="quantities">
+  <p> Ramen <span class="price">$17.50</span><br />
+  <small>From ramen to ramen soup, the combinations are endless! Try it with shrimps, chicken, beef or mixed with all three!</small></p>
+</div>
+<br><br>
+<input type="email" id="Email" placeholder="Your Email">
+<input placeholder="Your Name" id="Name">
+<input type="submit" id="submit">
+<br><br>
+
+<script>
+  $('div').on('click', function() {
+      $(this).toggleClass('show-description');
+  });
+	
+</script>
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
+	import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-database.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyCSxzV5zG8IVD2QqYGvJtsn9bSYahnRUN4",
+    authDomain: "mahin-project-3.firebaseapp.com",
+    databaseURL: "https://mahin-project-3-default-rtdb.firebaseio.com",
+    projectId: "mahin-project-3",
+    storageBucket: "mahin-project-3.appspot.com",
+    messagingSenderId: "842440993585",
+    appId: "1:842440993585:web:e58e928111011400de9e10"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+	const db = getDatabase(app);
+	const Name = document.querySelector("#Name") 
+	const Email = document.querySelector("#Email")
+	document.querySelector('#submit').addEventListener('click', Submit)
+	const quantities = document.querySelectorAll(".quantities")
+	const prices = document.querySelectorAll(".price")
+	const itemsList = ["Good Ol' Pizza!", "Introducing Ramen Pizza!", "Ramen"]
+	
+	function Submit() {
+		  const timestamp = buildTimestamp()
+		let total = 0
+	  let cart = { }
+	  for  (let i=0; i<quantities.length; i=i+1) {
+	  	if (quantities[i].value != "0" && quantities[i].value != "") {	
+			let price = prices[i].innerHTML.replace('$', '')
+			price = prices[i].innerHTML.replace('per slice', '')
+			total = total + quantities[i].value * price 
+	  		cart[itemsList[i]] = parseInt(quantities[i].value) 
+	  	}
+	  	quantities[i].value = ""
+	  }
+		
+		  set(ref(db, timestamp), {
+			  Name: Name.value,
+		      email: Email.value,
+				cart: cart,
+		  totalPrice: total,
+		  paid: "not yet",
+		  });
+
+		  Name.value = ""
+		  Email.value = ""
+		}
+		
+		function buildTimestamp() {
+		  const now = new Date();
+		  let timestamp = now.getFullYear().toString() + "/";
+		  //const month = now.toLocaleString('default', { month: 'long' });
+
+		  let month = now.getMonth()+1   //add 1 because Javascript uses 0 for January
+		  month = month.toString()
+		  month = addLeadingZero(month)
+		  timestamp += month + "/"; 
+
+		  let date = now.getDate().toString()
+		  date = addLeadingZero(date)
+		  timestamp += date + "/";
+
+		  let hours = now.getHours().toString()
+		  hours = addLeadingZero(hours)
+		  timestamp += hours + ":";
+
+		  let minutes = now.getMinutes().toString()
+		  minutes = addLeadingZero(minutes)
+		  timestamp += minutes + ":";
+
+		  let seconds = now.getSeconds().toString()
+		  seconds = addLeadingZero(seconds)
+		  timestamp += seconds;
+
+		  return timestamp
+		}
+
+		function addLeadingZero(units) {
+			if (units.length < 2) {
+				units = "0" + units
+			}
+			return units
+		}
+</script>
+</body>
+
